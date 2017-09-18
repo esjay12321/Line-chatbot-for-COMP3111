@@ -222,6 +222,8 @@ public class KitchenSinkController {
             throws Exception {
         String text = content.getText();
         
+        
+        
         log.info("Got text message from {}: {}", replyToken, text);
         
         String [] keywords = {"profile", "confirm", "carousel"};
@@ -230,6 +232,9 @@ public class KitchenSinkController {
         		if (hasWord(text,keywords[i])) {
         			word = keywords[i];
         		}
+        }
+        if (hasWord("profile","profile")) {
+        		word = "profile";
         }
         
         switch (word) {
