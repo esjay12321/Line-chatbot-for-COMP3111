@@ -36,9 +36,12 @@ public class DatabaseEngine {
 			
 			while ((sCurrentLine = br.readLine()) != null) {
 				String[] parts = sCurrentLine.split(":");
-				if (text.toLowerCase().equals(parts[0].toLowerCase())) {
+				if ( text.toLowerCase().indexOf(parts[0].toLowerCase()) != -1 ) {
 					result = parts[1];
 				}
+//				if (text.toLowerCase().equals(parts[0].toLowerCase())) {
+//					result = parts[1];
+//				}
 			}
 		} catch (IOException e) {
 			log.info("IOException while reading file: {}", e.toString());

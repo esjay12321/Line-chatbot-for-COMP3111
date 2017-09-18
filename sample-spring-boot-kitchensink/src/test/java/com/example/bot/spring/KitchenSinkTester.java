@@ -66,6 +66,7 @@ public class KitchenSinkTester {
 	public void testFound() throws Exception {
 		boolean thrown = false;
 		String result = null;
+		System.out.print("Testing is being held");
 		try {
 			result = this.databaseEngine.search("abc");
 		} catch (Exception e) {

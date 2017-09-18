@@ -231,10 +231,6 @@ public class KitchenSinkController {
         		}
         }
 
-//        if (hasWord(text, "confirm")) {
-//        		word = "confirm";
-//        }
-        
         switch (word) {
             case "profile": {
                 String userId = event.getSource().getUserId();
