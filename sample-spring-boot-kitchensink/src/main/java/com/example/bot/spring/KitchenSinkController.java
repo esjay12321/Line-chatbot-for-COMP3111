@@ -225,14 +225,11 @@ public class KitchenSinkController {
         	
         String word = "";
         
-//        String [3] keywords = {"profile", "confirm", "carousel"};
-//        for (int i = 0; i <keywords.length; i++) {
-//        		if (hasWord(text,keywords[i])) {
-//        			word = keywords[i];
-//        		}
-//        }
-        if (hasWord(text, "confirm")) {
-        		word = "confirm";
+        String [3] keywords = {"profile", "confirm", "carousel"};
+        for (int i = 0; i <keywords.length; i++) {
+        		if (hasWord(text,keywords[i])) {
+        			word = keywords[i];
+        		}
         }
         
         switch (word) {
