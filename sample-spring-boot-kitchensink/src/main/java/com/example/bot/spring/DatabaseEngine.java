@@ -36,9 +36,6 @@ public class DatabaseEngine {
 			
 			while ((sCurrentLine = br.readLine()) != null) {
 				String[] parts = sCurrentLine.split(":");
-//				if ( text.toLowerCase().contains(parts[0].toLowerCase())) {
-//					result = parts[1];
-//				}
 				if (text.toLowerCase().containts(parts[0].toLowerCase())) {
 					result = parts[1];
 				}
