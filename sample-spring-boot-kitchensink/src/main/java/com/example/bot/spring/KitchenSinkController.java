@@ -207,15 +207,12 @@ public class KitchenSinkController {
 		reply(replyToken, new StickerMessage(content.getPackageId(), content.getStickerId()));
 	}
 	
-	private boolean hasWord (String sentance, String word) {
-        String[] words = sentance.split("\\s+");
-        for (int i = 0; i < words.length; i++) {
-        		
-        		if (words[i].replaceAll("[^\\w]", "").equals(word) {
-            		return true;
-            }
-        }
-        return false;
+	private boolean hasWord (String sentence, String word) {
+		if ( sentence.toLowerCase().indexOf(word.toLowerCase()) != -1 ) {
+				return true;
+			} else {
+				return false;
+			}
 	}
 	
 	private void handleTextContent(String replyToken, Event event, TextMessageContent content)
