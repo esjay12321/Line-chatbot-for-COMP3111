@@ -207,13 +207,11 @@ public class KitchenSinkController {
 		reply(replyToken, new StickerMessage(content.getPackageId(), content.getStickerId()));
 	}
 	
-	private bool hasWord (String sentance, String word) {
+	private boolean hasWord (String sentance, String word) {
         String[] words = sentance.split("\\s+");
         for (int i = 0; i < words.length; i++) {
-            // You may want to check for a non-word character before blindly
-            // performing a replacement
-            // It may also be necessary to adjust the character class
-            if (words[i].replaceAll("[^\\w]", "") == word) {
+        		
+        		if (words[i].replaceAll("[^\\w]", "") == word) {
             		return true;
             }
         }
