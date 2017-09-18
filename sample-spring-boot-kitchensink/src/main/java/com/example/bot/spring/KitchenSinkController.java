@@ -206,13 +206,35 @@ public class KitchenSinkController {
 	private void handleSticker(String replyToken, StickerMessageContent content) {
 		reply(replyToken, new StickerMessage(content.getPackageId(), content.getStickerId()));
 	}
-
+	
+	private bool hasWord (String sentance, String word) {
+        String[] words = sentance.split("\\s+");
+        for (int i = 0; i < words.length; i++) {
+            // You may want to check for a non-word character before blindly
+            // performing a replacement
+            // It may also be necessary to adjust the character class
+            if (words[i].replaceAll("[^\\w]", "") == word) {
+            		return true;
+            }
+        }
+        return false;
+	}
+	
 	private void handleTextContent(String replyToken, Event event, TextMessageContent content)
             throws Exception {
         String text = content.getText();
-
+        
         log.info("Got text message from {}: {}", replyToken, text);
-        switch (text) {
+        
+        String [] keywords = {"profile", "confirm", "carousel"};
+        String word = "";
+        for (int i = 0; i <keywords.length; i++) {
+        		if (hasWord(text,keywords[i])) {
+        			word = keywords[i];
+        		}
+        }
+        
+        switch (word) {
             case "profile": {
                 String userId = event.getSource().getUserId();
                 if (userId != null) {
@@ -224,16 +246,7 @@ public class KitchenSinkController {
                 }
                 break;
             }
-            case "esjay": {
-            		ConfirmTemplate confirmTemplate = new ConfirmTemplate(
-                        "Do it?",
-                        new MessageAction("Yes", "Yes!"),
-                        new MessageAction("No", "No!")
-                );
-                TemplateMessage templateMessage = new TemplateMessage("Confirm alt text", confirmTemplate);
-                this.reply(replyToken, templateMessage);
-                break;
-            }
+            
             case "confirm": {
                 ConfirmTemplate confirmTemplate = new ConfirmTemplate(
                         "Do it?",
