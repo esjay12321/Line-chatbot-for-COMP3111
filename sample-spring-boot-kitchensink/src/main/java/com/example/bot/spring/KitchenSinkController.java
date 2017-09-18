@@ -210,9 +210,9 @@ public class KitchenSinkController {
 	private boolean hasWord (String sentence, String word) {
 		if ( sentence.toLowerCase().indexOf(word.toLowerCase()) != -1 ) {
 				return true;
-			} else {
-				return false;
-			}
+		} else {
+			return false;
+		}
 	}
 	
 	private void handleTextContent(String replyToken, Event event, TextMessageContent content)
