@@ -211,7 +211,7 @@ public class KitchenSinkController {
         String[] words = sentance.split("\\s+");
         for (int i = 0; i < words.length; i++) {
         		
-        		if (words[i].replaceAll("[^\\w]", "") == word) {
+        		if (words[i].replaceAll("[^\\w]", "").equals(word) {
             		return true;
             }
         }
@@ -226,15 +226,12 @@ public class KitchenSinkController {
         
         log.info("Got text message from {}: {}", replyToken, text);
         
-        String [] keywords = {"profile", "confirm", "carousel"};
+        String [3] keywords = {"profile", "confirm", "carousel"};
         String word = "";
         for (int i = 0; i <keywords.length; i++) {
         		if (hasWord(text,keywords[i])) {
         			word = keywords[i];
         		}
-        }
-        if (hasWord("profile","profile")) {
-        		word = "profile";
         }
         
         switch (word) {
