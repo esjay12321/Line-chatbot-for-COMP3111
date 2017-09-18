@@ -222,13 +222,17 @@ public class KitchenSinkController {
         
         
         log.info("Got text message from {}: {}", replyToken, text);
-        
-        String [3] keywords = {"profile", "confirm", "carousel"};
+        	
         String word = "";
-        for (int i = 0; i <keywords.length; i++) {
-        		if (hasWord(text,keywords[i])) {
-        			word = keywords[i];
-        		}
+        
+//        String [3] keywords = {"profile", "confirm", "carousel"};
+//        for (int i = 0; i <keywords.length; i++) {
+//        		if (hasWord(text,keywords[i])) {
+//        			word = keywords[i];
+//        		}
+//        }
+        if (hasWord(text, "confirm")) {
+        		word = "confirm";
         }
         
         switch (word) {
