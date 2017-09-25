@@ -9,23 +9,56 @@ import java.net.URI;
 
 @Slf4j
 public class SQLDatabaseEngine extends DatabaseEngine {
-	@Override
-	String search(String text) throws Exception {
-		//Write your code here
-		String result = null;
-		
+	
+	public String searchForCount() throws Exception {
+		int count = 0;
 		try {
 			Connection connection = getConnection();
 			PreparedStatement stmt = connection.prepareStatement(
-			"SELECT keyword, response FROM bot");
+			"SELECT keyword, response, count FROM bot");
+			
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				count = count + rs.getInt(3);
+
+			}
+			rs.close();
+			stmt.close();
+			connection.close();
+			
+		} catch (Exception e) {
+			log.info("IOException while reading file: {}", e.toString());
+			
+		}
+		return "You got the keyword " +count + " times!";
+	}
+	
+	@Override
+
+	String search(String text) throws Exception {
+		//Write your code here
+		String result = null;
+		int count = 0;
+		try {
+			Connection connection = getConnection();
+			PreparedStatement stmt = connection.prepareStatement(
+			"SELECT keyword, response, count FROM bot");
 //			 where keyword like concat('%', ?, '%')
 //			stmt.setString(0,text);
 			ResultSet rs = stmt.executeQuery();
 			
 			while (rs.next()) {
+				count = count + rs.getInt(3);
 				if (text.toLowerCase().contains(rs.getString(1).toLowerCase())) {
 					result = rs.getString(2);
-				}			
+					int newCount = rs.getInt(3) + 1; 
+					PreparedStatement stmt2 = connection.prepareStatement(
+					"UPDATE bot SET count = " + newCount + "WHERE keyword = " + rs.getString(1)
+							);
+					stmt2.executeUpdate();
+				}
+
 			}
 			rs.close();
 			stmt.close();
