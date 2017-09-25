@@ -31,12 +31,13 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 			stmt.close();
 			connection.close();
 			
-			return result;
 		} catch (Exception e) {
 			log.info("IOException while reading file: {}", e.toString());
-
+			
 		}
-		return null;
+		if (result != null)
+			return result;
+		throw new Exception("NOT FOUND");
 	}
 	
 	
