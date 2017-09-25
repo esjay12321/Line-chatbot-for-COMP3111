@@ -54,7 +54,7 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 					result = rs.getString(2);
 //					int newCount = rs.getInt(3) + 1; 
 					PreparedStatement stmt2 = connection.prepareStatement(
-					"UPDATE bot SET count = count+1 WHERE keyword = " + rs.getString(1)
+					"UPDATE bot SET count = count+1 WHERE keyword = '" + rs.getString(1) + "'"
 							);
 					stmt2.executeUpdate();
 				}
