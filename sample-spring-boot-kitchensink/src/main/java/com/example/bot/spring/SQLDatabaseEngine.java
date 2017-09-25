@@ -12,6 +12,30 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 	@Override
 	String search(String text) throws Exception {
 		//Write your code here
+		String result = null;
+		
+		try {
+			Connection connection = getConnection();
+			PreparedStatement stmt = connection.prepareStatement(
+			"SELECT keyword, response FROM bot");
+//			 where keyword like concat('%', ?, '%')
+//			stmt.setString(0,text);
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				if (text.toLowerCase().contains(rs.getString(1).toLowerCase())) {
+					result = rs.getString(2);
+				}			
+			}
+			rs.close();
+			stmt.close();
+			connection.close();
+			
+			return result;
+		} catch (Exception e) {
+			log.info("IOException while reading file: {}", e.toString());
+
+		}
 		return null;
 	}
 	
