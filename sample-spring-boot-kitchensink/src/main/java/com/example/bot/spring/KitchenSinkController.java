@@ -288,8 +288,8 @@ public class KitchenSinkController {
             	}
                 log.info("Returns echo message {}: {}", replyToken, reply);
                 
-                if (gotKEyWord) = {
-                		reply = reply + " " + database.searchForCount()
+                if (gotKeyWord) {
+                		reply = reply + " " + database.searchForCount();
                 }
                 this.replyText(
                         replyToken,
