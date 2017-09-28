@@ -278,16 +278,22 @@ public class KitchenSinkController {
             }
 
             default:
+            	boolean gotKeyWord = true;
             	String reply = null;
             	try {
             		reply = database.search(text);
             	} catch (Exception e) {
             		reply = text;
+            		gotKeyWord = false;
             	}
                 log.info("Returns echo message {}: {}", replyToken, reply);
+                
+                if (gotKEyWord) = {
+                		reply = reply + " " + database.searchForCount()
+                }
                 this.replyText(
                         replyToken,
-                        itscLOGIN + " says " + reply + database.searchForCount()
+                        itscLOGIN + " says " + reply
                 );
                 break;
         }
